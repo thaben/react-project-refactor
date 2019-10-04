@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import UserApiContext from "./UserApiContext";
-import Footer from "./Footer";
-import Dashboard from "./Dashboard";
 
-class UserApi extends Component {
+class UserApiProvider extends Component {
   state = {
     user: null,
   };
@@ -26,4 +24,4 @@ class UserApi extends Component {
   }
 }
 
-export default UserApi;
+export default UserApiProvider;

@@ -4,18 +4,17 @@ import Header from "./Header";
 import Employees from "./Employees/Employees";
 import EmployeeContainer from "./Employees/EmployeeContainer";
 import Footer from "./Footer";
-import UserApiContext from "./UserApiContext";
-import UserApi from "./UserApi";
+import UserApiProvider from "./UserApiContext/UserApiProvider";
 
 class Dashboard extends Component {
   render() {
     return (
       <Container> 
-        <UserApi>        
+        <UserApiProvider>        
           <Header />
           <EmployeeContainer />
           <Footer />
-        </UserApi>    
+        </UserApiProvider>    
        </Container>
     );
   }

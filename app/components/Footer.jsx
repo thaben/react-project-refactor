@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
-import UserApiContext from "./UserApiContext";
+import UserApiContext from "./UserApiContext/UserApiContext";
 
 
 const Footer = () => {
