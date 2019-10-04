@@ -3,7 +3,7 @@ import { Row, Col } from "reactstrap";
 import EmployeeList from "./EmployeeList";
 import EmployeeDetails from "./EmployeeDetails";
 
-const Employees =  ({ employees,selectedEmployee, onFormSubmit, onInputChange, onSelectChange, onSelectEmployee, }) => (
+const Employees =  ({ employees,selectedEmployee, onFormSubmit, onInputChange, onSelectChange, onSelectEmployee,filter }) => (
 
 
 
@@ -13,7 +13,7 @@ const Employees =  ({ employees,selectedEmployee, onFormSubmit, onInputChange, o
           <div className="employees-container">
             <div className="employees-list">
               <ul>
-                <EmployeeList employees={employees}  onSelectEmployee={onSelectEmployee} />
+                <EmployeeList filter={filter} employees={employees}  onSelectEmployee={onSelectEmployee} />
               </ul>
             </div>
                 <EmployeeDetails selectedEmployee={selectedEmployee} onFormSubmit={onFormSubmit} onInputChange={onInputChange} onSelectChang={onSelectChange} onSelectEmployee={onSelectEmployee} />

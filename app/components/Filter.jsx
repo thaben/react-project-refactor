@@ -1,54 +1,85 @@
-import React, { Component } from "react";
+import React, { Component , Fragment} from "react";
 import { Row,Button } from "reactstrap";
+import EmployeeContainer from "./Employees/EmployeeContainer";
 
 
 class Filter extends Component {
 
     state = {
+      filter:{
         filterGender: null,
-        // filterDepartment: null,
+        filterDepartment: null,
+      },
+       
       };
-
 
 
       onSelectFilterGender = (e) => {
        e.preventDefault();
-        const { value } = e.target;
-        this.setState( { filterGender:  value  } );
+       
+        const value  = e.target.value;
+        console.log(e.target.value);
+       // this.setState( { filterGender:  value  } , () => {console.log(this.state.filter.filterGender)});
+       this.setState( { filter:  { ...this.state.filter, filterGender: value }  } , () => {console.log(this.state.filter.filterGender)});
+      
       };
     
 
-      onSelectFilterDepartment = (e, id) => {
+      onSelectFilterDepartment = (e) => {
         e.preventDefault();
-        const { value1 } = e.target;
-        const {options, value} = e.target;
-        console.log(options[value]);
+        const  value  = e.target.value; 
+        this.setState( { filter:  { ...this.state.filter, filterDepartment: value }  }, () => {console.log(this.state.filter.filterDepartment)});
         
-    
-        this.setState( { filterDepartment: { ...this.state.filterDepartment, department: value } });
       };
 
     render() {
       return (
+        <Fragment>
+          <Row>
+           
+           <div className="form-group">
+             <label htmlFor="gender">Filter Gender:</label>
+             <select
+               id="gender"
+               name="gender"
+               className="form-control"
+               onChange={this.onSelectFilterGender}
+             >
+               <option disabled >Filter male</option>
+               <option>male</option>
+               <option>female</option>
+             </select>
+           </div>
+           
+           <div className="form-group">
+             <label htmlFor="department">Filter Department:</label>
+             <select
+               id="department"
+               name="department"
+               className="form-control"
+               onChange={this.onSelectFilterDepartment}
+           
+             >
+                
+               <option disabled >Filter Department</option>
+               <option>IT</option>
+               <option>marketing</option>
+               <option>finance</option>
+             </select>
+           </div>
+         
         
-        <Row>
-    
-            {console.log(this.filterGender)}
-                 <div className="form-group">
-                      <label htmlFor="gender">Gender:</label>
-                      <select
-                        id="gender"
-                        name="gender"
-                        className="form-control"
-                        onChange={(e) => this.setState({ filterGender: e.target.value })}
-                      >
-                        <option disabled >Filter Gender</option>
-                        <option>male</option>
-                        <option>female</option>
-                      </select>
-                    </div>
-      
-        </Row>
+         
+         </Row>
+          <EmployeeContainer filter={this.state.filter}/>
+        </Fragment>
+     
+            
+       
+
+ 
+       
+       
       );
     }
   }

@@ -21,8 +21,9 @@ class EmployeeContainer extends Component {
   onSelectEmployee = (e, id) => {
     e.preventDefault();
     const selectedEmployee = this.state.employees.find((employee) => employee.id === id);
-
-    this.setState({ selectedEmployee });
+    {console.log(this.props.filter.filterDepartment==null)}
+    
+      this.setState({ selectedEmployee });
   };
 
   onInputChange = (e) => {
@@ -36,7 +37,7 @@ class EmployeeContainer extends Component {
 
     this.setState({ selectedEmployee: { ...this.state.selectedEmployee, gender: value } });
   };
-
+ 
   onFormSubmit = async (e) => {
     e.preventDefault();
     const { id, ...rest } = this.state.selectedEmployee;
@@ -50,7 +51,6 @@ class EmployeeContainer extends Component {
     return <Employees
         {...this.state}
         {...this.props}
-
         employees={this.state.employees}  
         onSelectEmployee={this.onSelectEmployee}
         onFormSubmit={this.onFormSubmit}
