@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
 import Header from "./Header";
-import Employees from "./Employees";
+import Employees from "./Employees/Employees";
+import EmployeeContainer from "./Employees/EmployeeContainer"
 import Footer from "./Footer";
 
 class Dashboard extends Component {
@@ -9,7 +10,7 @@ class Dashboard extends Component {
     return (
       <Container>
         <Header />
-        <Employees />
+        <EmployeeContainer />
         <Footer />
       </Container>
     );
