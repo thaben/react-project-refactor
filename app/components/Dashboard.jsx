@@ -5,6 +5,7 @@ import Employees from "./Employees/Employees";
 import EmployeeContainer from "./Employees/EmployeeContainer";
 import Footer from "./Footer";
 import UserApiProvider from "./UserApiContext/UserApiProvider";
+import Filter from "./Filter";
 
 class Dashboard extends Component {
   render() {
@@ -12,6 +13,7 @@ class Dashboard extends Component {
       <Container> 
         <UserApiProvider>        
           <Header />
+          <Filter/>
           <EmployeeContainer />
           <Footer />
         </UserApiProvider>    
