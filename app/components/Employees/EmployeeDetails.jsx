@@ -1,78 +1,9 @@
-import React, { Component } from "react";
-import { Row, Col } from "reactstrap";
-import axios from "axios";
+import React ,{Fragment} from "react";
+import EmployeeListItem from "./EmployeeListItem";
 
-class Employees extends Component {
-  state = {
-    employees: [],
-    selectedEmployee: null,
-  };
+const EmployeeDetails = ({ selectedEmployee, onFormSubmit, onInputChange, onSelectChange }) => (
 
-  async componentDidMount() {
-    const employees = await axios.get("http://localhost:3001/employees");
 
-    this.setState({ employees: employees.data });
-  }
-
-  onSelectEmployee = (e, id) => {
-    e.preventDefault();
-    const selectedEmployee = this.state.employees.find((employee) => employee.id === id);
-
-    this.setState({ selectedEmployee });
-  };
-
-  onInputChange = (e) => {
-    const { value, name } = e.target;
-
-    this.setState({ selectedEmployee: { ...this.state.selectedEmployee, [name]: value } });
-  };
-
-  onSelectChange = (e) => {
-    const { value } = e.target;
-
-    this.setState({ selectedEmployee: { ...this.state.selectedEmployee, gender: value } });
-  };
-
-  onFormSubmit = async (e) => {
-    e.preventDefault();
-    const { id, ...rest } = this.state.selectedEmployee;
-    await axios.put(`http://localhost:3001/employees/${id}`, rest);
-    const employees = await axios.get("http://localhost:3001/employees");
-
-    this.setState({ employees: employees.data });
-  };
-
-  render() {
-    const { employees, selectedEmployee } = this.state;
-
-    return (
-      <Row>
-        <Col xs={12}>
-          <div className="employees-container">
-            <div className="employees-list">
-              <ul>
-                {employees.length &&
-                  employees.map((employee) => (
-                    <li key={employee.id} className="employee-list-item">
-                      <a href="#" onClick={(e) => this.onSelectEmployee(e, employee.id)}>
-                        <div className="img">
-                          <img
-                            width={70}
-                            height={70}
-                            className="rounded-circle"
-                            src={employee.picture}
-                            alt={`${employee.firstName} ${employee.lastName} photo`}
-                          />
-                        </div>
-                        <div className="info">
-                          <p className="name">{`${employee.firstName} ${employee.lastName}`}</p>
-                          <p className="email">{employee.email}</p>
-                        </div>
-                      </a>
-                    </li>
-                  ))}
-              </ul>
-            </div>
             <div className="employee-details">
               {selectedEmployee ? (
                 <>
@@ -81,7 +12,7 @@ class Employees extends Component {
                     {`${selectedEmployee.firstName} ${selectedEmployee.lastName}`} (
                     {selectedEmployee.department})
                   </h3>
-                  <form onSubmit={this.onFormSubmit}>
+                  <form onSubmit={onFormSubmit}>
                     <div className="form-group">
                       <label htmlFor="firstName">First name:</label>
                       <input
@@ -90,7 +21,7 @@ class Employees extends Component {
                         id="firstName"
                         name="firstName"
                         value={selectedEmployee.firstName}
-                        onChange={this.onInputChange}
+                        onChange={onInputChange}
                       />
                     </div>
 
@@ -102,7 +33,7 @@ class Employees extends Component {
                         id="lastName"
                         name="lastName"
                         value={selectedEmployee.lastName}
-                        onChange={this.onInputChange}
+                        onChange={onInputChange}
                       />
                     </div>
 
@@ -112,7 +43,7 @@ class Employees extends Component {
                         id="gender"
                         name="gender"
                         className="form-control"
-                        onChange={this.onSelectChange}
+                        onChange={onSelectChange}
                       >
                         <option>male</option>
                         <option>female</option>
@@ -127,7 +58,7 @@ class Employees extends Component {
                         id="email"
                         name="email"
                         value={selectedEmployee.email}
-                        onChange={this.onInputChange}
+                        onChange={onInputChange}
                       />
                     </div>
 
@@ -139,7 +70,7 @@ class Employees extends Component {
                         id="phone"
                         name="phone"
                         value={selectedEmployee.phone}
-                        onChange={this.onInputChange}
+                        onChange={onInputChange}
                       />
                     </div>
 
@@ -151,7 +82,7 @@ class Employees extends Component {
                         id="mobile"
                         name="mobile"
                         value={selectedEmployee.mobile}
-                        onChange={this.onInputChange}
+                        onChange={onInputChange}
                       />
                     </div>
 
@@ -163,7 +94,7 @@ class Employees extends Component {
                         id="age"
                         name="age"
                         value={selectedEmployee.age}
-                        onChange={this.onInputChange}
+                        onChange={onInputChange}
                       />
                     </div>
 
@@ -176,11 +107,7 @@ class Employees extends Component {
                 <h3>Please select a user to view edit his data...</h3>
               )}
             </div>
-          </div>
-        </Col>
-      </Row>
-    );
-  }
-}
 
-export default Employees;
+);
+
+export default EmployeeDetails;
