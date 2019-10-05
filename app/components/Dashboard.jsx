@@ -14,7 +14,6 @@ class Dashboard extends Component {
         <UserApiProvider>        
           <Header />
           <Filter/>
-          {/* <EmployeeContainer /> */}
           <Footer />
         </UserApiProvider>    
        </Container>

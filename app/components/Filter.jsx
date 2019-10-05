@@ -7,8 +7,8 @@ class Filter extends Component {
 
     state = {
       filter:{
-        filterGender: null,
-        filterDepartment: null,
+        filterGender: '',
+        filterDepartment: '',
       },
        
       };
@@ -45,7 +45,8 @@ class Filter extends Component {
                className="form-control"
                onChange={this.onSelectFilterGender}
              >
-               <option disabled >Filter male</option>
+               {/* <option defaultValue selected disabled >Filter Gender</option> */}
+               <option value=''>All</option>
                <option>male</option>
                <option>female</option>
              </select>
@@ -59,9 +60,10 @@ class Filter extends Component {
                className="form-control"
                onChange={this.onSelectFilterDepartment}
            
-             >
+             > 
                 
-               <option disabled >Filter Department</option>
+               {/* <option defaultValue selected disabled >Filter Department</option> */}
+               <option value=''>All</option>
                <option>IT</option>
                <option>marketing</option>
                <option>finance</option>
